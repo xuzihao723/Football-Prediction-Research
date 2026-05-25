@@ -1,0 +1,92 @@
+{
+  "model": "random_forest",
+  "task": "prematch",
+  "league": "france",
+  "search": "random",
+  "refit_on": "accuracy",
+  "cv_splits": 5,
+  "samplers_searched": [
+    "none",
+    "random_oversample",
+    "svm_smote",
+    "smote_nn",
+    "near_miss",
+    "smote_tomek"
+  ],
+  "scalers_searched": [
+    "none"
+  ],
+  "best_score": 0.5185795132993773,
+  "best_metrics": {
+    "accuracy": 0.5185795132993773,
+    "f1_macro": 0.41043705342811493,
+    "precision_macro": 0.472722825839187,
+    "recall_macro": 0.4495970999129443
+  },
+  "best_params": {
+    "scaler": "passthrough",
+    "sampler": "passthrough",
+    "clf__n_estimators": 600,
+    "clf__min_samples_split": 12,
+    "clf__min_samples_leaf": 4,
+    "clf__max_features": "sqrt",
+    "clf__max_depth": 12,
+    "clf__class_weight": null
+  },
+  "best_index": 8,
+  "elapsed_seconds": 248.472068,
+  "n_candidates": 40,
+  "fold_descriptions": [
+    {
+      "fold": 0,
+      "val_season": "2020-2021",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 1,
+      "val_season": "2019-2020",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019"
+      ],
+      "n_val": 279
+    },
+    {
+      "fold": 2,
+      "val_season": "2018-2019",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 3,
+      "val_season": "2017-2018",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 4,
+      "val_season": "2016-2017",
+      "train_seasons": [
+        "2015-2016"
+      ],
+      "n_val": 380
+    }
+  ],
+  "timestamp": "2026-05-08T19:56:07"
+}

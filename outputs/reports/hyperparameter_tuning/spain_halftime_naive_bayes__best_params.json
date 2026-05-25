@@ -1,0 +1,87 @@
+{
+  "model": "naive_bayes",
+  "task": "halftime",
+  "league": "spain",
+  "search": "grid",
+  "refit_on": "accuracy",
+  "cv_splits": 5,
+  "samplers_searched": [
+    "none",
+    "random_oversample",
+    "svm_smote",
+    "smote_nn",
+    "near_miss",
+    "smote_tomek"
+  ],
+  "scalers_searched": [
+    "minmax"
+  ],
+  "best_score": 0.5584210526315789,
+  "best_metrics": {
+    "accuracy": 0.5584210526315789,
+    "f1_macro": 0.4851400671225542,
+    "precision_macro": 0.5213762913699774,
+    "recall_macro": 0.5072104189204157
+  },
+  "best_params": {
+    "clf__var_smoothing": 1e-10,
+    "sampler": "SMOTETomek",
+    "scaler": "MinMaxScaler"
+  },
+  "best_index": 25,
+  "elapsed_seconds": 19.743344,
+  "n_candidates": 30,
+  "fold_descriptions": [
+    {
+      "fold": 0,
+      "val_season": "2020-2021",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 1,
+      "val_season": "2019-2020",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 2,
+      "val_season": "2018-2019",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 3,
+      "val_season": "2017-2018",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 4,
+      "val_season": "2016-2017",
+      "train_seasons": [
+        "2015-2016"
+      ],
+      "n_val": 380
+    }
+  ],
+  "timestamp": "2026-05-08T21:19:48"
+}

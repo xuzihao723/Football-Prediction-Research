@@ -1,0 +1,92 @@
+{
+  "model": "random_forest",
+  "task": "prematch",
+  "league": "germany",
+  "search": "random",
+  "refit_on": "accuracy",
+  "cv_splits": 5,
+  "samplers_searched": [
+    "none",
+    "random_oversample",
+    "svm_smote",
+    "smote_nn",
+    "near_miss",
+    "smote_tomek"
+  ],
+  "scalers_searched": [
+    "none"
+  ],
+  "best_score": 0.5287581699346405,
+  "best_metrics": {
+    "accuracy": 0.5287581699346405,
+    "f1_macro": 0.39770586249636775,
+    "precision_macro": 0.3805785425778983,
+    "recall_macro": 0.45470487933911646
+  },
+  "best_params": {
+    "scaler": "passthrough",
+    "sampler": "passthrough",
+    "clf__n_estimators": 300,
+    "clf__min_samples_split": 12,
+    "clf__min_samples_leaf": 9,
+    "clf__max_features": "log2",
+    "clf__max_depth": 12,
+    "clf__class_weight": null
+  },
+  "best_index": 25,
+  "elapsed_seconds": 207.129466,
+  "n_candidates": 40,
+  "fold_descriptions": [
+    {
+      "fold": 0,
+      "val_season": "2020-2021",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020"
+      ],
+      "n_val": 306
+    },
+    {
+      "fold": 1,
+      "val_season": "2019-2020",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019"
+      ],
+      "n_val": 306
+    },
+    {
+      "fold": 2,
+      "val_season": "2018-2019",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018"
+      ],
+      "n_val": 306
+    },
+    {
+      "fold": 3,
+      "val_season": "2017-2018",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017"
+      ],
+      "n_val": 306
+    },
+    {
+      "fold": 4,
+      "val_season": "2016-2017",
+      "train_seasons": [
+        "2015-2016"
+      ],
+      "n_val": 306
+    }
+  ],
+  "timestamp": "2026-05-08T19:40:19"
+}

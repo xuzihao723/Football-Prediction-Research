@@ -1,0 +1,91 @@
+{
+  "model": "logistic_regression",
+  "task": "halftime",
+  "league": "italy",
+  "search": "grid",
+  "refit_on": "accuracy",
+  "cv_splits": 5,
+  "samplers_searched": [
+    "none",
+    "random_oversample",
+    "svm_smote",
+    "smote_nn",
+    "near_miss",
+    "smote_tomek"
+  ],
+  "scalers_searched": [
+    "standard"
+  ],
+  "best_score": 0.6084210526315789,
+  "best_metrics": {
+    "accuracy": 0.6084210526315789,
+    "f1_macro": 0.5435957352945655,
+    "precision_macro": 0.5587152917074343,
+    "recall_macro": 0.5554912515644557
+  },
+  "best_params": {
+    "clf__C": 0.05,
+    "clf__class_weight": null,
+    "clf__max_iter": 3000,
+    "clf__penalty": "l2",
+    "clf__solver": "lbfgs",
+    "sampler": "passthrough",
+    "scaler": "StandardScaler"
+  },
+  "best_index": 0,
+  "elapsed_seconds": 34.053478,
+  "n_candidates": 72,
+  "fold_descriptions": [
+    {
+      "fold": 0,
+      "val_season": "2020-2021",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 1,
+      "val_season": "2019-2020",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 2,
+      "val_season": "2018-2019",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 3,
+      "val_season": "2017-2018",
+      "train_seasons": [
+        "2015-2016",
+        "2016-2017"
+      ],
+      "n_val": 380
+    },
+    {
+      "fold": 4,
+      "val_season": "2016-2017",
+      "train_seasons": [
+        "2015-2016"
+      ],
+      "n_val": 380
+    }
+  ],
+  "timestamp": "2026-05-08T22:23:51"
+}
