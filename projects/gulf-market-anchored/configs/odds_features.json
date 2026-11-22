@@ -1,0 +1,30 @@
+{
+  "market_columns": [
+    "odds_ft_home_team_win",
+    "odds_ft_draw",
+    "odds_ft_away_team_win",
+    "odds_ft_over15",
+    "odds_ft_over25",
+    "odds_ft_over35",
+    "odds_ft_over45",
+    "odds_btts_yes",
+    "odds_btts_no",
+    "implied_prob_home",
+    "implied_prob_draw",
+    "implied_prob_away",
+    "overround",
+    "normalized_prob_home",
+    "normalized_prob_draw",
+    "normalized_prob_away",
+    "odds_diff_home_away",
+    "odds_ratio_home_away",
+    "odds_closeness",
+    "odds_draw_signal"
+  ],
+  "market_prior_columns": [
+    "odds_ft_home_team_win",
+    "odds_ft_draw",
+    "odds_ft_away_team_win"
+  ],
+  "note": "market_prior  [translated] 3  [translated] [translated] [translated] [translated] [translated]； [translated] [translated] regex"
+}

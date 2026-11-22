@@ -1,0 +1,127 @@
+{
+  "order": [
+    "Elo",
+    "Form/momentum",
+    "Standings",
+    "Venue history",
+    "Head-to-head",
+    "Rest/congestion/travel",
+    "Draw-oriented"
+  ],
+  "groups": {
+    "Elo": [
+      "elo_diff_pre",
+      "elo_closeness"
+    ],
+    "Form/momentum": [
+      "home_win_streak",
+      "away_win_streak",
+      "home_loss_streak",
+      "away_loss_streak",
+      "home_unbeaten_streak",
+      "away_unbeaten_streak",
+      "home_winless_streak",
+      "away_winless_streak",
+      "home_form_ppg_3",
+      "home_form_ppg_5",
+      "home_form_ppg_8",
+      "away_form_ppg_3",
+      "away_form_ppg_5",
+      "away_form_ppg_8",
+      "home_goal_diff_5",
+      "away_goal_diff_5",
+      "home_mom_slope",
+      "away_mom_slope",
+      "home_mom_volatility_5",
+      "away_mom_volatility_5",
+      "home_opp_adj_form_5",
+      "away_opp_adj_form_5",
+      "home_opp_adj_form_5_elo",
+      "away_opp_adj_form_5_elo",
+      "form_ppg_diff_3",
+      "form_ppg_diff_5",
+      "form_ppg_diff_8",
+      "goal_diff_mom_5_diff",
+      "mom_slope_diff",
+      "mom_volatility_diff",
+      "opp_adj_form_diff_5",
+      "opp_adj_form_diff_5_elo"
+    ],
+    "Standings": [
+      "Home wins in the window",
+      "Away wins in the window",
+      "Total home win rate",
+      "Total away win rate",
+      "Total home draw rate",
+      "Total away draw rate",
+      "Total home loss rate",
+      "Total away loss rate",
+      "Home goals forward per match",
+      "Away goals forward per match",
+      "Home goals against per match",
+      "Away goals against per match",
+      "Home goal differential per match",
+      "Away goal differential per match",
+      "Home wins margin goal",
+      "Away wins margin goal",
+      "Home losses margin goal",
+      "Away losses margin goal",
+      "home_rank_pct",
+      "away_rank_pct",
+      "rank_pct_diff",
+      "rank_pct_closeness",
+      "home_ppg_pre",
+      "away_ppg_pre",
+      "ppg_diff_pre"
+    ],
+    "Venue history": [
+      "home_venue_form_ppg_5",
+      "away_venue_form_ppg_5",
+      "venue_form_ppg_5_diff"
+    ],
+    "Head-to-head": [
+      "h2h_matches_played",
+      "h2h_home_wins",
+      "h2h_draws",
+      "h2h_away_wins",
+      "h2h_home_win_rate",
+      "h2h_recent_home_wins",
+      "h2h_recent_draws",
+      "h2h_recent_away_wins",
+      "h2h_draw_rate"
+    ],
+    "Rest/congestion/travel": [
+      "travel_distance_km",
+      "home_rest_days",
+      "away_rest_days",
+      "home_match_density_mom_5",
+      "away_match_density_mom_5",
+      "home_match_density_ewm_5",
+      "away_match_density_ewm_5",
+      "home_travel_km_team",
+      "home_travel_km_mom_5",
+      "away_travel_km_mom_5",
+      "home_travel_km_ewm_5",
+      "away_travel_km_ewm_5",
+      "home_travel_fatigue_mom_5",
+      "away_travel_fatigue_score",
+      "away_travel_fatigue_mom_5"
+    ],
+    "Draw-oriented": [
+      "home_recent_draw_tendency",
+      "away_recent_draw_tendency",
+      "combined_draw_tendency",
+      "close_x_draw_tendency",
+      "composite_closeness",
+      "volatility_x_closeness"
+    ]
+  },
+  "league_context": {
+    "note": "fixed structural var",
+    "columns": [
+      "c_league_Saudi",
+      "c_league_UAE"
+    ],
+    "reference": "Qatar"
+  }
+}

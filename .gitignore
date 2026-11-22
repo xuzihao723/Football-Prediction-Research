@@ -1,0 +1,32 @@
+# Python environments and generated output
+.venv/
+.venvs/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+runs/
+outputs/
+momentum_prediction_results/
+catboost_info/
+*.joblib
+*.pkl
+*.ubj
+*.log
+.env
+.env.*
+*.pdf
+
+# Keep provider material and frozen predictions at their upstream local paths.
+# Review rights before changing this exclusion.
+*.csv
+*.parquet
+/projects/europe-big-five/all_results.json
+/projects/europe-big-five/search_spaces.json
+/projects/europe-big-five/**/event_state_table_validation_summary.txt
+/projects/gulf-market-anchored/official_data/canonical/
+/projects/gulf-market-anchored/official_data/modeling/
+/projects/gulf-market-anchored/official_data/recovery/
+/projects/gulf-market-anchored/results/

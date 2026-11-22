@@ -1,0 +1,259 @@
+{
+  "Historical-LR": {
+    "C": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ]
+  },
+  "Concat-LR": {
+    "alpha": [
+      0.001,
+      0.01,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0,
+      30.0
+    ]
+  },
+  "Residual-LR": {
+    "alpha": [
+      0.01,
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0
+    ],
+    "residual_scale": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "gate": [
+      false,
+      true
+    ]
+  },
+  "XGB": {
+    "configs": [
+      {
+        "max_depth": 1,
+        "eta": 0.02,
+        "min_child_weight": 20,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 1,
+        "eta": 0.05,
+        "min_child_weight": 20,
+        "lambda": 5.0
+      },
+      {
+        "max_depth": 1,
+        "eta": 0.1,
+        "min_child_weight": 10,
+        "lambda": 5.0
+      },
+      {
+        "max_depth": 2,
+        "eta": 0.02,
+        "min_child_weight": 20,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 2,
+        "eta": 0.05,
+        "min_child_weight": 10,
+        "lambda": 5.0
+      },
+      {
+        "max_depth": 2,
+        "eta": 0.1,
+        "min_child_weight": 5,
+        "lambda": 5.0
+      },
+      {
+        "max_depth": 3,
+        "eta": 0.02,
+        "min_child_weight": 20,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 3,
+        "eta": 0.05,
+        "min_child_weight": 10,
+        "lambda": 5.0
+      },
+      {
+        "max_depth": 3,
+        "eta": 0.1,
+        "min_child_weight": 5,
+        "lambda": 1.0
+      },
+      {
+        "max_depth": 1,
+        "eta": 0.05,
+        "min_child_weight": 10,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 2,
+        "eta": 0.05,
+        "min_child_weight": 20,
+        "lambda": 1.0
+      },
+      {
+        "max_depth": 3,
+        "eta": 0.05,
+        "min_child_weight": 20,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 1,
+        "eta": 0.02,
+        "min_child_weight": 5,
+        "lambda": 1.0
+      },
+      {
+        "max_depth": 2,
+        "eta": 0.02,
+        "min_child_weight": 5,
+        "lambda": 5.0
+      },
+      {
+        "max_depth": 3,
+        "eta": 0.02,
+        "min_child_weight": 5,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 1,
+        "eta": 0.1,
+        "min_child_weight": 20,
+        "lambda": 1.0
+      },
+      {
+        "max_depth": 2,
+        "eta": 0.1,
+        "min_child_weight": 10,
+        "lambda": 10.0
+      },
+      {
+        "max_depth": 3,
+        "eta": 0.1,
+        "min_child_weight": 20,
+        "lambda": 5.0
+      }
+    ],
+    "max_rounds": 800,
+    "early_stopping_rounds": 40,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "xgb_gamma": 0.0,
+    "reg_alpha": 0.0
+  },
+  "XGBClassifier": {
+    "n_estimators": [
+      500
+    ],
+    "max_depth": [
+      3,
+      6,
+      9
+    ],
+    "learning_rate": [
+      0.03,
+      0.1
+    ],
+    "min_child_weight": [
+      1,
+      5
+    ]
+  },
+  "RF": {
+    "n_estimators": [
+      300
+    ],
+    "max_depth": [
+      null,
+      8,
+      16
+    ],
+    "min_samples_leaf": [
+      2,
+      5,
+      10
+    ],
+    "max_features": [
+      "sqrt",
+      0.7
+    ]
+  },
+  "LightGBM": {
+    "n_estimators": [
+      500
+    ],
+    "learning_rate": [
+      0.03,
+      0.05
+    ],
+    "num_leaves": [
+      7,
+      15,
+      31
+    ],
+    "min_child_samples": [
+      10,
+      30
+    ]
+  },
+  "CatBoost": {
+    "iterations": [
+      500
+    ],
+    "depth": [
+      4,
+      6,
+      8
+    ],
+    "learning_rate": [
+      0.03,
+      0.05
+    ],
+    "l2_leaf_reg": [
+      3,
+      10
+    ]
+  },
+  "FNN": {
+    "hidden_layer_sizes": [
+      [
+        64
+      ],
+      [
+        64,
+        32
+      ],
+      [
+        128,
+        64
+      ]
+    ],
+    "alpha": [
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "learning_rate_init": [
+      0.001
+    ]
+  }
+}

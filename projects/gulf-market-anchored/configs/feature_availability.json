@@ -1,0 +1,811 @@
+{
+  "categories": {
+    "IDENTIFIER_ONLY": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]",
+    "PRE_MATCH_RAW": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）",
+    "PRE_MATCH_HISTORICAL": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature",
+    "PRE_MATCH_MARKET": " [translated] [translated] [translated] [translated]",
+    "HALF_TIME_SCORE": "45min [translated] [translated]",
+    "HALF_TIME_NON_SCORE": "45min [translated] [translated] [translated]",
+    "POST_MATCH_FORBIDDEN": " [translated] [translated] [translated] [translated]",
+    "REMOVED": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+  },
+  "target_columns": [
+    "target_match_result",
+    "target_home_team_goal_count",
+    "target_away_team_goal_count"
+  ],
+  "columns": {
+    "timestamp": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "date_GMT": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "status": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "attendance": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "home_team_name": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "away_team_name": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "referee": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "Game Week": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "stadium_name": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "home_team_key": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "away_team_key": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "match_date": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "year": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "month": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "day_of_week": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "is_weekend": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "match_id": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "league": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "league_key": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "match_datetime": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "season": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "home_city": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "away_city": {
+      "availability": "IDENTIFIER_ONLY",
+      "note": " [translated] [translated] [translated]/ [translated] [translated] [translated]/ [translated] [translated] [translated]"
+    },
+    "home_team_goal_count": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_goal_count": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "total_goal_count": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_ppg": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_ppg": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_goal_timings": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_goal_timings": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_corner_count": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_corner_count": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_yellow_cards": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_red_cards": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_yellow_cards": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_red_cards": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_second_half_cards": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_second_half_cards": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_shots": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_shots": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_shots_on_target": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_shots_on_target": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_shots_off_target": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_shots_off_target": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_fouls": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_fouls": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_team_possession": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "away_team_possession": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "team_a_xg": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "team_b_xg": {
+      "availability": "POST_MATCH_FORBIDDEN",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "total_goals_at_half_time": {
+      "availability": "HALF_TIME_SCORE",
+      "note": "45min [translated] [translated]"
+    },
+    "home_team_goal_count_half_time": {
+      "availability": "HALF_TIME_SCORE",
+      "note": "45min [translated] [translated]"
+    },
+    "away_team_goal_count_half_time": {
+      "availability": "HALF_TIME_SCORE",
+      "note": "45min [translated] [translated]"
+    },
+    "ht_goal_difference": {
+      "availability": "HALF_TIME_SCORE",
+      "note": "45min [translated] [translated]"
+    },
+    "home_team_first_half_cards": {
+      "availability": "HALF_TIME_NON_SCORE",
+      "note": "45min [translated] [translated] [translated]"
+    },
+    "away_team_first_half_cards": {
+      "availability": "HALF_TIME_NON_SCORE",
+      "note": "45min [translated] [translated] [translated]"
+    },
+    "Pre-Match PPG (Home)": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "Pre-Match PPG (Away)": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "Home Team Pre-Match xG": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "Away Team Pre-Match xG": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "average_goals_per_match_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "btts_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_15_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_25_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_35_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_45_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_15_HT_FHG_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_05_HT_FHG_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_15_2HG_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "over_05_2HG_percentage_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "average_corners_per_match_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "average_cards_per_match_pre_match": {
+      "availability": "PRE_MATCH_RAW",
+      "note": " [translated] [translated] [translated] [translated] [translated] [translated]（ [translated] [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "odds_ft_home_team_win": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ft_draw": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ft_away_team_win": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ft_over15": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ft_over25": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ft_over35": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ft_over45": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_btts_yes": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_btts_no": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "implied_prob_home": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "implied_prob_draw": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "implied_prob_away": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "overround": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "normalized_prob_home": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "normalized_prob_draw": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "normalized_prob_away": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_diff_home_away": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_ratio_home_away": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_closeness": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "odds_draw_signal": {
+      "availability": "PRE_MATCH_MARKET",
+      "note": " [translated] [translated] [translated] [translated]"
+    },
+    "home_elo_pre": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_elo_pre": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "elo_diff_pre": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "elo_closeness": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_win_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_win_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_loss_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_loss_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_unbeaten_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_unbeaten_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_winless_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_winless_streak": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_form_ppg_3": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_form_ppg_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_form_ppg_8": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_form_ppg_3": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_form_ppg_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_form_ppg_8": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_goal_diff_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_goal_diff_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_mom_slope": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_mom_slope": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_mom_volatility_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_mom_volatility_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_opp_adj_form_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_opp_adj_form_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_opp_adj_form_5_elo": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_opp_adj_form_5_elo": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "form_ppg_diff_3": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "form_ppg_diff_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "form_ppg_diff_8": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "goal_diff_mom_5_diff": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "mom_slope_diff": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "mom_volatility_diff": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "opp_adj_form_diff_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "opp_adj_form_diff_5_elo": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home wins in the window": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away wins in the window": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Total home win rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Total away win rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Total home draw rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Total away draw rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Total home loss rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Total away loss rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home goals forward": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away goals forward": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home goals against": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away goals against": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home goal differential": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away goal differential": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home goals forward per match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away goals forward per match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home goals against per match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away goals against per match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home goal differential per match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away goal differential per match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home wins margin goal": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away wins margin goal": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Home losses margin goal": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "Away losses margin goal": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_current_rank": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_current_rank": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "rank_difference": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_points_before_match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_points_before_match": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "points_difference": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "rank_closeness": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_venue_form_ppg_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_venue_form_ppg_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "venue_form_ppg_5_diff": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_matches_played": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_home_wins": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_draws": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_away_wins": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_home_win_rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_recent_home_wins": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_recent_draws": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_recent_away_wins": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "h2h_draw_rate": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "travel_distance_km": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_rest_days": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_rest_days": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_match_density_mom_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_match_density_mom_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_match_density_ewm_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_match_density_ewm_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_travel_km_team": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_travel_km_mom_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_travel_km_mom_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_travel_km_ewm_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_travel_km_ewm_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_travel_fatigue_mom_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_travel_fatigue_score": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_travel_fatigue_mom_5": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_recent_draw_tendency": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "away_recent_draw_tendency": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "combined_draw_tendency": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "close_x_draw_tendency": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "composite_closeness": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "volatility_x_closeness": {
+      "availability": "PRE_MATCH_HISTORICAL",
+      "note": " [translated] [translated] [translated] [translated]/ [translated] [translated]feature"
+    },
+    "home_xg_diff_5_proxy": {
+      "availability": "REMOVED",
+      "note": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "away_xg_diff_5_proxy": {
+      "availability": "REMOVED",
+      "note": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "xg_diff_mom_5_proxy_diff": {
+      "availability": "REMOVED",
+      "note": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "home_venue_xg_diff_5_proxy": {
+      "availability": "REMOVED",
+      "note": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "away_venue_xg_diff_5_proxy": {
+      "availability": "REMOVED",
+      "note": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    },
+    "venue_xg_diff_5_proxy_diff": {
+      "availability": "REMOVED",
+      "note": " [translated] [translated] [translated]（xG [translated] [translated] [translated] [translated]， [translated] [translated]feature [translated]）"
+    }
+  }
+}
