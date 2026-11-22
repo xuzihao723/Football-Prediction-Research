@@ -1,0 +1,12 @@
+{
+  "source-europe": {
+    "commit": "b326af27c7df6ee802e50a2f5ab20ff5ec4ea69d",
+    "origin": "https://github.com/Corey30/FootBallPredictionOnBig5.git",
+    "target_root": "projects/europe-big-five"
+  },
+  "source-gulf": {
+    "commit": "e6a83c01547d4c8f9ed9b70d788ac5ba4f2147ff",
+    "origin": "https://github.com/Corey30/Market-AnchoredFootballForecastingOnAsia.git",
+    "target_root": "projects/gulf-market-anchored"
+  }
+}

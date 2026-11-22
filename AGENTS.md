@@ -1,0 +1,11 @@
+# Working in Football Prediction Research
+
+- Treat `projects/europe-big-five/FootBallPredictionOnBig5`, the nested `FootBallRealPre/FootBallRealTimePrediction` execution directory and `projects/gulf-market-anchored` as separate Python environments. Launch commands from the component root and avoid a shared `PYTHONPATH` for their `src` packages.
+- Keep imports, outputs and environment changes scoped to the relevant component. Use readable code, explicit paths, small tests and deterministic synthetic fixtures.
+- Treat `../source-europe` and `../source-gulf` as read-only. The source commits and every migrated path are in [provenance](docs/provenance/sources.json) and the [file manifest](docs/provenance/migration-manifest.tsv).
+- Protect frozen data, outputs, configs, class encoding, features, fold boundaries, HPO settings, seeds and metrics. Record any approved behavioral change as a separate protocol with its own outputs and regression evidence. Run output-writing experiments in an isolated writable copy or use an explicit separate output directory where the legacy CLI supports one.
+- Keep `docs/provenance/migration-manifest.tsv` immutable. Update the audited `optimization-overrides.json` only for reviewed inherited Python changes, then verify the original source and frozen assets with `--include-local --source-root ..`.
+- Record new experiments with `scripts/record_run.py` and keep receipts and outputs under ignored `runs/`. Capture the actual exit code and optional structured metrics.
+- Start with `python scripts/verify_baseline.py`. Use each component's `requirements-validation.txt`, `python -m compileall` and pytest commands in [Reproducibility](docs/reproducibility.md). The Gulf full suite requires the locally retained data and outputs. CI uses a synthetic subset.
+- Keep commits local unless the user authorizes a different Git workflow. Preserve author and source records. The integration branch is `refactor/monorepo-integration`. Leave upstream remotes untouched.
+- Respect source and asset permissions. Preserve provider files locally with the Git exclusions in place. Clear licensing and attribution before preparing a public release. Keep credentials, environments and run outputs outside the tracked tree.

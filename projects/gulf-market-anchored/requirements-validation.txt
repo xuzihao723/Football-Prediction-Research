@@ -1,0 +1,10 @@
+# CPU environment for the integration checks.
+-c constraints-3.11.txt
+numpy
+pandas
+scipy
+scikit-learn
+xgboost-cpu
+lightgbm
+catboost
+pytest

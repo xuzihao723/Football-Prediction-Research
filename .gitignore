@@ -1,45 +1,39 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-.Python
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.ipynb_checkpoints/
-
-# Virtual environments
+# Python environments and generated output
 .venv/
-venv/
-env/
-
-# Logs and local runtime files
-*.log
-debug.log
-
-# IDE/editor files
-.vscode/
-.idea/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Model artifacts
-outputs/models/
+.venvs/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+runs/
+outputs/
+momentum_prediction_results/
+catboost_info/
 *.joblib
 *.pkl
-
-# LaTeX build artifacts
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.lof
+*.ubj
 *.log
-*.lot
-*.out
-*.synctex.gz
-*.toc
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+credentials.json
+*.pdf
+
+# Keep provider material and frozen predictions at their upstream local paths.
+# Review rights before changing this exclusion.
+*.csv
+*.parquet
+/projects/europe-big-five/all_results.json
+/projects/europe-big-five/search_spaces.json
+/projects/europe-big-five/**/event_state_table_validation_summary.txt
+/projects/gulf-market-anchored/official_data/canonical/
+/projects/gulf-market-anchored/official_data/modeling/
+/projects/gulf-market-anchored/official_data/recovery/
+/projects/gulf-market-anchored/results/

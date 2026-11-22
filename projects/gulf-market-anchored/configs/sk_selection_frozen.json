@@ -1,0 +1,11 @@
+{
+  "schema": "sk_selection_fold_specific_v1",
+  "selected_groups_by_fold": {
+    "0": ["Elo", "Standings"],
+    "1": ["Elo", "Standings"],
+    "2": ["Elo", "Standings"],
+    "3": ["Elo", "Standings"],
+    "4": ["Elo", "Standings"]
+  },
+  "note": "Fold-specific by definition; equality across folds is a training-only stability result, not a global hard-coded feature set."
+}

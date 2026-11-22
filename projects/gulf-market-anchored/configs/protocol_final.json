@@ -1,0 +1,130 @@
+{
+  "seasons": [
+    "2015-2016",
+    "2016-2017",
+    "2017-2018",
+    "2018-2019",
+    "2019-2020",
+    "2020-2021",
+    "2021-2022",
+    "2022-2023",
+    "2023-2024",
+    "2024-2025"
+  ],
+  "outer_folds": [
+    {
+      "fold": 0,
+      "outer_train": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020"
+      ],
+      "outer_test": [
+        "2020-2021"
+      ]
+    },
+    {
+      "fold": 1,
+      "outer_train": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021"
+      ],
+      "outer_test": [
+        "2021-2022"
+      ]
+    },
+    {
+      "fold": 2,
+      "outer_train": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022"
+      ],
+      "outer_test": [
+        "2022-2023"
+      ]
+    },
+    {
+      "fold": 3,
+      "outer_train": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "outer_test": [
+        "2023-2024"
+      ]
+    },
+    {
+      "fold": 4,
+      "outer_train": [
+        "2015-2016",
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "outer_test": [
+        "2024-2025"
+      ]
+    }
+  ],
+  "target_col": "target_match_result",
+  "class_order": [
+    "A",
+    "D",
+    "H"
+  ],
+  "random_seed": 42,
+  "leagues": [
+    "Qatar",
+    "Saudi",
+    "UAE"
+  ],
+  "league_context_columns": [
+    "c_league_Saudi",
+    "c_league_UAE"
+  ],
+  "fixture_key_col": "fixture_key",
+  "timestamp_precision_col": "timestamp_precision",
+  "date_only_value": "date_only",
+  "definitive_lock_env": "ALLOW_DEFINITIVE_OUTER_TEST",
+  "hybrid_early_origin_fallback": {
+    "LR": {
+      "alpha": 1.0,
+      "residual_scale": 1.0,
+      "gate": false
+    },
+    "XGB": {
+      "config_index": 0,
+      "rounds": 200
+    },
+    "reason": "insufficient nested market seasons in earliest legal Hybrid OOF origin; fixed before definitive evaluation"
+  },
+  "d_nested_early_origin_fallback": {
+    "XGB_rounds": 200,
+    "LightGBM_rounds": 200,
+    "CatBoost_rounds": 200,
+    "FNN_epochs": 100,
+    "reason": "insufficient nested seasons in earliest Smart-Voting OOF origin; fixed before definitive evaluation"
+  }
+}

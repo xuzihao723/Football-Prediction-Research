@@ -1,0 +1,77 @@
+name: Research checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python scripts/verify_baseline.py
+      - name: Test experiment provenance
+        run: python -m unittest discover -s tests
+      - name: Install static analysis
+        run: python -m pip install ruff==0.11.13
+      - name: Check optimized code and experiment tools
+        run: >-
+          ruff check --select E9,F63,F7,F82 scripts tests
+          projects/europe-big-five/FootBallRealPre/FootBallRealPre/FootBallRealTimePrediction/build_momentum_features.py
+          projects/gulf-market-anchored/src/pooled_split.py
+      - name: Check formatting of experiment tools
+        run: ruff format --check scripts/record_run.py scripts/benchmark_refactors.py tests/test_record_run.py
+
+  components:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Europe match-level
+            project: projects/europe-big-five/FootBallPredictionOnBig5
+            compile: src scripts data merged_data tests
+            tests: tests
+          - name: Europe event-level
+            project: projects/europe-big-five/FootBallRealPre/FootBallRealPre/FootBallRealTimePrediction
+            compile: src build_momentum_features.py run_momentum_prediction.py tune_england_pre_momentum.py tests
+            tests: tests
+          - name: Gulf market-anchored
+            project: projects/gulf-market-anchored
+            compile: src tools tests
+            tests: >-
+              tests/test_migration_basics.py tests/test_runner.py tests/test_temporal.py tests/test_temporal_regression.py
+              tests/test_core.py tests/test_anchoring.py tests/test_generic.py tests/test_structural.py
+              tests/test_experiment_d_protocol.py tests/test_xgb_v4.py tests/test_xgb_v4_inference.py
+    env:
+      MPLBACKEND: Agg
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: |
+            ${{ matrix.project }}/requirements-validation.txt
+            ${{ matrix.project }}/constraints-3.11.txt
+      - name: Install component validation dependencies
+        run: python -m pip install -r requirements-validation.txt
+      - name: Compile Python entry points and tests
+        run: python -m compileall -q ${{ matrix.compile }}
+      - name: Run tests with synthetic fixtures
+        run: python -m pytest -q ${{ matrix.tests }}
