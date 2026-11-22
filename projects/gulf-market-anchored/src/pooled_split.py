@@ -1,5 +1,9 @@
 from __future__ import annotations
-import numpy as np, pandas as pd
+from collections.abc import Iterator
+
+import numpy as np
+import pandas as pd
+
 from .config import protocol
 
 PRECISION_COL="timestamp_precision"; DATE_ONLY="date_only"
@@ -59,7 +63,7 @@ def pooled_inner_temporal_split(train_df,min_train_seasons:int=3):
         out.append({"train_idx":tr.tolist(),"val_idx":va.tolist(),"train_seasons":tr_s,"val_seasons":[va_s],"nominal_train_n":len(nom),"cutoff_removed_n":len(nom)-len(tr),"legal_train_n":len(tr),"val_n":len(va),"boundary":str(bound)})
     return out
 
-def temporal_batches(df: pd.DataFrame):
+def temporal_batches(df: pd.DataFrame) -> Iterator[np.ndarray]:
     """Yield positional batches that cannot consume one another's outcomes.
 
     Exact timestamps share a batch.  If *any* fixture on a calendar day is date-only,
@@ -67,21 +71,21 @@ def temporal_batches(df: pd.DataFrame):
     an unknown kickoff time must never be ordered before/after an exact-time fixture on
     the same day.  The rule is shared by Elo, Poisson/DC and HT structural updates.
     """
-    work=df.reset_index(drop=True)
-    t=match_time(work)
-    precision=work.get(PRECISION_COL,pd.Series("exact",index=work.index)).astype(str)
-    date_only=precision.eq(DATE_ONLY)
-    day=t.dt.floor("D")
-    whole_day=set(day[date_only].tolist())
-    key=[]
-    for i,ts in enumerate(t):
-        d=day.iloc[i]
-        key.append(("D",str(d.date())) if d in whole_day else ("T",ts.isoformat()))
-    first={}
-    for i,k in enumerate(key):
-        first.setdefault(k, day.iloc[i] if k[0]=="D" else t.iloc[i])
-    for k in sorted(first,key=lambda x:first[x]):
-        yield np.array([i for i,v in enumerate(key) if v==k],dtype=int)
+    timestamps = match_time(df)
+    if timestamps.empty:
+        return
+    if PRECISION_COL in df.columns:
+        days = timestamps.dt.floor("D")
+        date_only = df[PRECISION_COL].astype(str).eq(DATE_ONLY)
+        timestamps = timestamps.where(~days.isin(days[date_only]), days)
+
+    # All exact fixtures on a date-only day now share its midnight key. Within
+    # each key, preserve source row order while sorting keys chronologically.
+    keys = timestamps.array.asi8
+    order = np.argsort(keys, kind="stable")
+    sorted_keys = keys[order]
+    boundaries = np.flatnonzero(sorted_keys[1:] != sorted_keys[:-1]) + 1
+    yield from np.split(order, boundaries)
 
 
 def development_smoke_split(df: pd.DataFrame):
