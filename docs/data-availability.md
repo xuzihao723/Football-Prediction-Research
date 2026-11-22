@@ -10,4 +10,6 @@ The local monorepo retains the original match and event datasets and frozen rese
 
 The root ignore rules keep local-only data, model and prediction artifacts out of Git. The manifest identifies their providers' source snapshots, Git objects and content hashes. Do not use forced Git additions for these files. Restore an authorized file from the pinned archive at its listed path and use the verification script to confirm its SHA-256. Synthetic tests and the GitHub Actions validation subset have no private dataset requirement.
 
+The local benchmarks use the materialized Europe event CSV and Gulf harmonized CSV. Keep experiment receipts local because they contain input paths, configuration and environment details. [Experiment receipts](reproducibility.md#experiment-receipts)
+
 Data redistribution depends on the applicable terms for FootyStats, Football-Data.co.uk, StatsBomb, recovery data and derived artifacts. Obtain release decisions before distribution, including for per-fixture predictions. Code redistribution decisions are also pending for the integration branch. See the [full audit](DATA_AND_LICENSE_AUDIT.md) and [third-party notices](../THIRD_PARTY_NOTICES.md).

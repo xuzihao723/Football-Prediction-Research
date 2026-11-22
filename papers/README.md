@@ -12,6 +12,8 @@ Publication status follows the research team's supplied project records. Citatio
 - **Reproduction** — Follow the Europe run instructions and verify the archived JSON and event data. The revision-specific fold runner, fixture-level outputs and 374 event-pilot test keys are pending. [Mapping](../docs/paper-code-mapping.md)
 - **DOI, public URL and formal citation** — Pending verified publication metadata.
 
+The verified first-half feature output matches the archived CSV byte-for-byte. The optimization report describes the downstream prediction probe and what is still needed to replay the manuscript. [Validation](../docs/OPTIMIZATION_REPORT.md)
+
 ## ICPRAM 2027
 
 - **Title** — Market-Anchored Football Forecasting: Source-Specific Regularization and Score-Based Half-Time Updating.
@@ -21,3 +23,5 @@ Publication status follows the research team's supplied project records. Citatio
 - **Project and implementation** — [Gulf Market-Anchored](../projects/gulf-market-anchored/README.md). See `src/models/anchoring.py`, `src/models/xgb_v4.py`, `src/pooled_split.py` and `tools/final_design_execution.py`.
 - **Reproduction** — Verify data and frozen predictions in a local research copy, then use `python -m src.preflight` and the Gulf tests. Some manuscript-generation inputs are missing from the upstream snapshot. [Reproduction instructions](../docs/reproducibility.md)
 - **DOI, public URL and formal citation** — Pending verified proceedings metadata and author list.
+
+The temporal batch refactor preserved the development smoke predictions. A read-only recalculation confirmed the archived C030 contrast. [Validation](../docs/OPTIMIZATION_REPORT.md)

@@ -73,6 +73,8 @@ Use the Python interpreter from the current component's environment.
 | `europe-big-five/FootBallRealPre/FootBallRealPre/FootBallRealTimePrediction` | `python -m pytest -q tests` exercises the feature-building entry point on synthetic events |
 | `gulf-market-anchored` | `python -m src.run_experiments --help` and `python -m pytest -q tests/test_migration_basics.py tests/test_runner.py tests/test_temporal.py` |
 
+For a local Gulf development smoke with authorized inputs, run `python -m src.run_experiments --exp A --mode smoke` from the Gulf directory. The event component accepts `--input-csv` and `--output-csv` for isolated first-half feature builds.
+
 From the repository root, run `python scripts/verify_baseline.py` to verify tracked migration files and local-only index exclusions. See [Reproducibility](docs/reproducibility.md) before running experiments that write outputs.
 
 ## Experimental Protocols
@@ -85,7 +87,7 @@ The European snapshot contains historical summaries and search spaces. The Gulf 
 
 ## Reproducibility
 
-Source commits, file paths and SHA-256 hashes are recorded in [provenance](docs/provenance/sources.json) and the [migration manifest](docs/provenance/migration-manifest.tsv). The integration tests exercise source imports, entry points, time splits, feature generation and probability evaluation. Dataset-backed checks use the local snapshots. See the [integration report](docs/INTEGRATION_REPORT.md) for results and gaps.
+Source commits, file paths and SHA-256 hashes are recorded in [provenance](docs/provenance/sources.json) and the [migration manifest](docs/provenance/migration-manifest.tsv). The integration tests exercise source imports, entry points, time splits, feature generation and probability evaluation. Dataset-backed checks use the local snapshots. Use [experiment receipts](docs/reproducibility.md#experiment-receipts) to record input hashes, configuration, the interpreter and output artifacts. The [optimization report](docs/OPTIMIZATION_REPORT.md) records measured changes and equivalence checks.
 
 ## Data Availability
 

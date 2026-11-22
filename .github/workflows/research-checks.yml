@@ -17,6 +17,17 @@ jobs:
         with:
           python-version: '3.11'
       - run: python scripts/verify_baseline.py
+      - name: Test experiment provenance
+        run: python -m unittest discover -s tests
+      - name: Install static analysis
+        run: python -m pip install ruff==0.11.13
+      - name: Check optimized code and experiment tools
+        run: >-
+          ruff check --select E9,F63,F7,F82 scripts tests
+          projects/europe-big-five/FootBallRealPre/FootBallRealPre/FootBallRealTimePrediction/build_momentum_features.py
+          projects/gulf-market-anchored/src/pooled_split.py
+      - name: Check formatting of experiment tools
+        run: ruff format --check scripts/record_run.py scripts/benchmark_refactors.py tests/test_record_run.py
 
   components:
     name: ${{ matrix.name }}
@@ -38,7 +49,7 @@ jobs:
             project: projects/gulf-market-anchored
             compile: src tools tests
             tests: >-
-              tests/test_migration_basics.py tests/test_runner.py tests/test_temporal.py
+              tests/test_migration_basics.py tests/test_runner.py tests/test_temporal.py tests/test_temporal_regression.py
               tests/test_core.py tests/test_anchoring.py tests/test_generic.py tests/test_structural.py
               tests/test_experiment_d_protocol.py tests/test_xgb_v4.py tests/test_xgb_v4_inference.py
     env:

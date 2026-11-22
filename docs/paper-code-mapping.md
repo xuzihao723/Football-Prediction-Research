@@ -19,4 +19,6 @@ The [paper records](../papers/README.md) give the titles, versions and publicati
 | Linear and nonlinear market updates | `src/models/{anchoring,xgb_v4}.py`, `tools/run_xgb_v4.py` and `tools/final_design_execution.py` | `results/xgb_v4/` fold outputs and diagnostics, `results/final_results/` canonical PRE, Zero and Tied-Zero outputs. |
 | Half-time score and probability evaluation | `tools/final_design_execution.py`, `src/{metrics,statistics,tables}.py` and `tools/analyze_xgb_v4.py` | Seven-learner PRE/HT predictions, probability diagnostics, paired contrasts and Holm family registry. Some exact replay inputs and the final figure workflow are pending. |
 
+Europe reproduced the archived 1,823-row event feature CSV byte-for-byte. Gulf preserved all 4,049 chronological batches on the retained data and the outer and inner fold memberships. The manuscript reconstruction gaps above remain open. [Optimization validation](OPTIMIZATION_REPORT.md)
+
 See [Reproducibility](reproducibility.md) for commands and output protection.
