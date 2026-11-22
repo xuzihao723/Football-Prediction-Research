@@ -3,6 +3,7 @@
 import argparse
 import csv
 import hashlib
+import json
 import os
 import subprocess
 from collections import Counter
@@ -32,15 +33,23 @@ def main() -> None:
     )
     counts = Counter()
     errors = []
+    overrides = json.loads((PROVENANCE / "optimization-overrides.json").read_text(encoding="utf-8"))
     with (PROVENANCE / "migration-manifest.tsv").open(encoding="utf-8", newline="") as file:
         for entry in csv.DictReader(file, delimiter="\t"):
             target = entry["target_path"]
             local = entry["placement"] == "local-only"
             if (target in tracked) == local:
                 errors.append(f"Git index does not match placement of {target}")
+            expected_target = entry["target_sha256"]
+            override = overrides.pop(target, None)
+            if override is not None:
+                if local or not target.endswith(".py") or override["integration_sha256"] != expected_target:
+                    errors.append(f"Invalid optimization override for {target}")
+                else:
+                    expected_target = override["optimized_sha256"]
             checks = []
             if not local or args.include_local:
-                checks.append((ROOT / target, entry["target_sha256"]))
+                checks.append((ROOT / target, expected_target))
             if args.source_root is not None:
                 source = args.source_root / entry["source"] / entry["source_path"]
                 checks.append((source, entry["source_sha256"]))
@@ -55,6 +64,7 @@ def main() -> None:
                     errors.append(f"{path}: expected SHA-256 {expected}, found {actual}")
             counts[entry["placement"] if checks else "local-only excluded"] += 1
 
+    errors.extend(f"Unknown optimization override: {target}" for target in overrides)
     for issue in errors:
         print(issue)
     summary = ", ".join(f"{key}: {value}" for key, value in sorted(counts.items()))

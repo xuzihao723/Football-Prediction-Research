@@ -17,7 +17,8 @@ Output: momentum_features_big5_2015_16.csv
 
 from __future__ import annotations
 
-import sys
+import argparse
+import logging
 from pathlib import Path
 
 import numpy as np
@@ -138,11 +139,7 @@ def extract_curve_features(m_grid: np.ndarray, t_grid: np.ndarray | None = None)
     """Extract 10 summary features from a resampled momentum curve."""
     feats: dict = {}
     if m_grid is None or np.all(np.isnan(m_grid)):
-        return {k: np.nan for k in [
-            "mean", "max", "min", "area_signed", "zero_crossings",
-            "slope_overall", "value_at_end", "mean_last_600s",
-            "slope_last_third", "area_decay_tau600s",
-        ]}
+        return dict.fromkeys(CURVE_FEATURES, np.nan)
 
     m = np.asarray(m_grid, dtype=float)
     n = len(m)
@@ -195,92 +192,87 @@ def extract_curve_features(m_grid: np.ndarray, t_grid: np.ndarray | None = None)
 
     return feats
 
+# Also defines the column order for matches too short to summarize.
+CURVE_FEATURES = (
+    "mean", "max", "min", "area_signed", "zero_crossings", "slope_overall",
+    "value_at_end", "mean_last_600s", "slope_last_third", "area_decay_tau600s",
+)
+LOGGER = logging.getLogger(__name__)
 
-def build_momentum_features() -> pd.DataFrame:
-    print(f"[1/4] Loading event state table from {EVENT_STATE_CSV} ...")
-    usecols = (
-        ["match_id", "period", "time_sec", "home_team", "away_team",
-         "score_diff", "red_card_diff"]
-        + list(DIFF_COLS.values())
-        + list(HOME_COLS.values())
-        + list(AWAY_COLS.values())
+
+def summarize_match(events: pd.DataFrame) -> dict[str, str | int | float]:
+    """Summarize one match in chronological event order."""
+    row = {
+        "match_id": int(events["match_id"].iloc[0]),
+        "home_team": events["home_team"].iloc[0],
+        "away_team": events["away_team"].iloc[0],
+        "n_first_half_rows": len(events),
+    }
+    if len(events) < MIN_ROWS:
+        row.update({f"{prefix}_{name}": np.nan
+                    for prefix in ("eq", "int") for name in CURVE_FEATURES})
+        return row
+
+    times, directional = compute_meq(events)
+    intensity = compute_mint(events)
+    time_grid = np.linspace(float(times.min()), float(times.max()), N_GRID)
+    for prefix, values in (("eq", directional), ("int", intensity)):
+        grid = resample_curve(times, values)
+        features = extract_curve_features(grid, time_grid)
+        row.update({f"{prefix}_{name}": value for name, value in features.items()})
+    return row
+
+
+def summarize_first_half(events: pd.DataFrame) -> pd.DataFrame:
+    """Summarize first-half events in the legacy match and timestamp order."""
+    ordered = events.sort_values(["match_id", "time_sec"])
+    match_ids = ordered["match_id"].to_numpy()
+    if pd.isna(match_ids).any():
+        raise ValueError("First-half events require a match_id")
+    if not len(match_ids):
+        return pd.DataFrame()
+
+    # Sorting makes each match contiguous, so each slice is selected once.
+    boundaries = np.flatnonzero(match_ids[1:] != match_ids[:-1]) + 1
+    offsets = np.concatenate(([0], boundaries, [len(match_ids)]))
+    return pd.DataFrame(
+        summarize_match(ordered.iloc[start:end])
+        for start, end in zip(offsets[:-1], offsets[1:], strict=True)
     )
-    # de-duplicate (some columns overlap)
-    usecols = sorted(set(usecols))
-    df = pd.read_csv(EVENT_STATE_CSV, usecols=usecols)
-    print(f"      Loaded {len(df):,} rows, {df['match_id'].nunique()} matches")
 
-    # keep first half only
-    df = df[df["period"] == 1].copy()
-    print(f"[2/4] Filtered to first half: {len(df):,} rows, {df['match_id'].nunique()} matches")
 
-    # sort
-    df = df.sort_values(["match_id", "time_sec"]).reset_index(drop=True)
+def build_momentum_features(
+    input_csv: Path | None = None, output_csv: Path | None = None,
+) -> pd.DataFrame:
+    """Read event states and write a new match-level feature CSV."""
+    input_csv = EVENT_STATE_CSV if input_csv is None else Path(input_csv)
+    output_csv = OUTPUT_CSV if output_csv is None else Path(output_csv)
+    if output_csv.exists():
+        raise FileExistsError(f"Momentum output already exists: {output_csv}")
 
-    print("[3/4] Computing momentum curves and features per match ...")
-    rows = []
-    match_ids = df["match_id"].unique()
-    for i, mid in enumerate(match_ids):
-        df_m = df[df["match_id"] == mid].reset_index(drop=True)
-        home_team = df_m["home_team"].iloc[0]
-        away_team = df_m["away_team"].iloc[0]
-
-        if len(df_m) < MIN_ROWS:
-            # flag and assign NaN
-            row = {
-                "match_id": int(mid),
-                "home_team": home_team,
-                "away_team": away_team,
-                "n_first_half_rows": int(len(df_m)),
-            }
-            for prefix in ("eq", "int"):
-                for fname in ["mean", "max", "min", "area_signed", "zero_crossings",
-                              "slope_overall", "value_at_end", "mean_last_600s",
-                              "slope_last_third", "area_decay_tau600s"]:
-                    row[f"{prefix}_{fname}"] = np.nan
-            rows.append(row)
-            continue
-
-        # compute curves
-        t_arr, meq = compute_meq(df_m)
-        mint = compute_mint(df_m)
-
-        # resample onto 91-point uniform grid
-        meq_grid = resample_curve(t_arr, meq)
-        mint_grid = resample_curve(t_arr, mint)
-
-        # build a time grid in seconds for feature extraction
-        t_grid = np.linspace(float(t_arr.min()), float(t_arr.max()), N_GRID)
-
-        # extract features
-        eq_feats = extract_curve_features(meq_grid, t_grid)
-        int_feats = extract_curve_features(mint_grid, t_grid)
-
-        row = {
-            "match_id": int(mid),
-            "home_team": home_team,
-            "away_team": away_team,
-            "n_first_half_rows": int(len(df_m)),
-        }
-        for fname, val in eq_feats.items():
-            row[f"eq_{fname}"] = val
-        for fname, val in int_feats.items():
-            row[f"int_{fname}"] = val
-        rows.append(row)
-
-        if (i + 1) % 200 == 0:
-            print(f"      processed {i + 1}/{len(match_ids)} matches")
-
-    print(f"[4/4] Saving momentum features to {OUTPUT_CSV} ...")
-    out = pd.DataFrame(rows)
-    out.to_csv(OUTPUT_CSV, index=False, encoding="utf-8-sig")
-    print(f"      Done. {len(out)} matches, {out.shape[1]} columns.")
-    # quick summary
-    nan_count = out[[c for c in out.columns if c.startswith(("eq_", "int_"))]].isna().any(axis=1).sum()
-    print(f"      Matches with NaN momentum (rows < {MIN_ROWS}): {nan_count}")
+    columns = {
+        "match_id", "period", "time_sec", "home_team", "away_team", "score_diff",
+        "red_card_diff", *DIFF_COLS.values(), *HOME_COLS.values(), *AWAY_COLS.values(),
+    }
+    events = pd.read_csv(input_csv, usecols=sorted(columns))
+    first_half = events.loc[events["period"] == 1]
+    LOGGER.info("Loaded %d events from %s, including %d first-half rows",
+                len(events), input_csv, len(first_half))
+    del events
+    out = summarize_first_half(first_half)
+    out.to_csv(output_csv, index=False, encoding="utf-8-sig", mode="x")
+    LOGGER.info("Wrote %d matches and %d columns to %s", *out.shape, output_csv)
     return out
 
 
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Summarize first-half momentum features.")
+    parser.add_argument("--input-csv", type=Path, default=EVENT_STATE_CSV)
+    parser.add_argument("--output-csv", type=Path, default=OUTPUT_CSV)
+    args = parser.parse_args()
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    build_momentum_features(args.input_csv, args.output_csv)
+
+
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
-    build_momentum_features()
+    main()
